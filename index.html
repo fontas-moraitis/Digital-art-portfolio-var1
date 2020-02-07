@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tasos siakotos arch. visualisation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- about-me page -->
+        <div class="about-page hidden" id="aboutPage">
+            <div class="upperPart">
+                <div class="title" id="title">hi, i am tasos</div>
+                <div class="close-button" id="closeButton">X</div>
+            </div>
+            <div class="text" id="text">an architectural visualiser based in Birmingham. I have a
+                background in Architecture and a passion about photography. I have worked
+                in several architecture practises...
+            </div>
+        </div>
+        <!-- about-me page - end -->
+
+        <div class="wrapper">
+            <header>
+                <div class="owner"><a href="#">TS</a></div>
+                <div class="categories">
+                    <div class="category archviz">architecture</div>
+                    <div class="category mattepaint">matte-paintings</div>
+                    <div class="category photography">photography</div>
+                </div>
+            </header>
+            <main>
+                <div class="image-container">
+                    <img id="image" class="image-container__image" src="assets/test.jpg"></img>
+                </div>
+                <div class="control-container">
+                    <img class="button prev" src="assets/arrow-left.png"></img>
+                    <img class="button next" src="assets/arrow-right.png"></img>
+                </div>
+                <div class="info-container">
+                    <div class="about" id="aboutButton">about me</div>
+                    <div class="description-wrapper">
+                        <div class="description">
+                            <div class="index">01/05</div>
+                            <div class="img-title">title of the painting</div> 
+                        </div>
+                    </div> 
+                </div>   
+            </main>
+            <footer>
+                <div class="social-container">
+                    <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img class="social linkedin" src="assets/linkedin.svg"></img></a>
+                    <a href="https://www.behance.net/tasossiakotos" target="blanc"><img class="social behance" src="assets/behance.svg"></img></a>
+                    <a href="https://www.instagram.com/siakan/" target="blanc"></a><img class="social instagram" src="assets/instagram.svg"></img>
+                </div>
+                <div class="copyright">copyright @2020 Tasos Siakotos - Created by <a href="http://www.fontas.me" target="blanc" >Fontas</a></div>  
+            </footer> 
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>

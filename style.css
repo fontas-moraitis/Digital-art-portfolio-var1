@@ -1,0 +1,269 @@
+/* css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Container*/
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6f2f4;
+    overflow: hidden;
+}
+
+.wrapper {
+    max-width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Header */
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.owner {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.category:hover {
+    font-weight: 900;
+    color: #353535;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container__image {
+    height: 400px;
+}
+
+.index {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5%;
+}
+
+.img-title {
+    font-size: 14px;
+}
+
+.control-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 0;
+}
+
+.control-container img {
+    width: 30px;
+}
+
+.button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.next:hover {
+    transform: translateX(10px);
+    transition: all 500ms ease;
+}
+
+.prev:hover {
+    transform: translateX(-10px);
+    transition: all 500ms ease;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.about:hover {
+    font-weight: 300;
+}
+
+.social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.social {
+    width: 15px;
+    margin:  0 20px;
+}
+
+.social:hover {
+    cursor: pointer;
+}
+
+.copyright {
+    grid-column: 1 / span 3;
+    grid-row: 11 / span 1;
+    font-size: 10px;
+}
+
+/* about me page*/
+
+.about-page {
+    background-color: #efeeee;
+    padding: 60px 24%;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    opacity: 1;
+    transition: all 1.5s ease-in-out;
+}
+
+.hidden {
+    left: -100%;
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+}
+
+.upperPart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 100px;
+    color: rgb(40,40,40);
+    text-transform: lowercase;
+}
+
+.close-button {
+    font-weight: 300;
+    font-size: 60px;
+    color: rgb(40,40,40);
+    text-transform: lowercase;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    transform: rotateY(-360deg);
+    transition: all 1s ease-in-out;
+}
+
+.text {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    color: rgb(40,40,40);
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: flex-between;
+        width: 100%;
+        margin-top: 10%;
+    }
+
+    .category {
+        margin: 0;
+    }
+
+    .control-container {
+        height: 10%;
+    }
+
+    /* about page mobile */
+
+    .about-page {
+        padding: 6%;
+    }
+}
