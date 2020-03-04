@@ -123,6 +123,7 @@ const UIcontroller = function(galleries) {
    image.src = currentGallery[0].url;
    imgTitle.textContent = currentGallery[0].name;
    index.textContent = `${i + 1} / ${currentGallery.length}`;
+   arch.classList.add('active-category');
 
    //Event  Listeners:
    // 01. selecting galleries:
@@ -131,6 +132,10 @@ const UIcontroller = function(galleries) {
        image.src = currentGallery[0].url;
        imgTitle.textContent = currentGallery[0].name;
        index.textContent = `${0 + 1} / ${currentGallery.length}`;
+
+       arch.classList.add('active-category');
+       photo.classList.remove('active-category');
+       mattePaint.classList.remove('active-category');
     });
 
     mattePaint.addEventListener('click', () => {
@@ -138,6 +143,10 @@ const UIcontroller = function(galleries) {
         image.src = currentGallery[0].url;
         imgTitle.textContent = currentGallery[0].name;
         index.textContent = `${0 + 1} / ${currentGallery.length}`;
+
+        arch.classList.remove('active-category');
+        photo.classList.remove('active-category');
+        mattePaint.classList.add('active-category');
     });
 
     photo.addEventListener('click', () => {
@@ -145,6 +154,10 @@ const UIcontroller = function(galleries) {
         image.src = currentGallery[0].url;
         imgTitle.textContent = currentGallery[0].name;
         index.textContent = `${0 + 1} / ${currentGallery.length}`;
+
+        arch.classList.remove('active-category');
+        photo.classList.add('active-category');
+        mattePaint.classList.remove('active-category');
     });
 
    // 02. switching through images:
