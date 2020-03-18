@@ -171,8 +171,8 @@ a {
 }
 
 .img-title {
-    font-family: 'Inconsolata', monospace;
     font-size: 1rem;
+    font-weight: 500;
     text-transform: lowercase;
     color: #353535;
 }
