@@ -28,8 +28,12 @@ a {
     color: inherit;
 }
 
+:root {
+    --main-color: #f1f2f6;
+  }
+
 .content {
-    background-color: #1e272e;
+    background-color: var(--main-color);
 }
 
 /* mobile first gallery page, for desktop version look down :D */
@@ -73,7 +77,8 @@ a {
     width: 100vw;
     height: 100vh;
     margin-top: 60px;
-    background-color: #f1f2f6;
+    background-color: var(--main-color);
+    color: #f7f1e3;
     z-index: 3;
     display: none;
 }
@@ -305,6 +310,7 @@ footer {
         align-items: center;
         padding: 20px;
         background-color: #f1f2f6;
+        box-shadow: 2px 0 6px #ced6e0;
     }
 
     .about-page {
