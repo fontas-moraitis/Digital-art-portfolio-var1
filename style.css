@@ -28,7 +28,11 @@ a {
     color: inherit;
 }
 
-/* mobile first gallery page */
+.content {
+    background-color: #1e272e;
+}
+
+/* mobile first gallery page, for desktop version look down :D */
 
 .stop-scrolling { 
     height: 100%; 
@@ -69,7 +73,7 @@ a {
     width: 100vw;
     height: 100vh;
     margin-top: 60px;
-    background-color: white;
+    background-color: #f1f2f6;
     z-index: 3;
     display: none;
 }
@@ -183,7 +187,7 @@ a {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: gold;
+    background-color: #c8d6e5;
     z-index: 4;
     display: flex;
     flex-direction: column;
@@ -196,16 +200,50 @@ a {
 }
 
 .loader-bar {
-    width: 60px;
-    height: 2px;
-    background-color: #353535;
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0 );
     margin-top: 10px;
-    animation: loaderAnim 800ms linear infinite;
+    animation: loaderAnim 2800ms linear infinite;
+}
+
+.loader-bar span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(#14ffe9, #ffeb3b, #ff9ff3);
+    animation: loaderAnim 1000ms linear infinite;
+}
+
+.loader-bar span:nth-child(1) {
+    filter: blur(10px);
+}
+
+.loader-bar span:nth-child(2) {
+    filter: blur(20px);
+}
+
+.loader-bar span:nth-child(3) {
+    filter: blur(30px);
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background: #c8d6e5;
+    border-radius: 50%;    
+    box-shadow: inset 4px 4px 6px #aab6c3, inset -4px -4px 6px #e6f6ff;
 }
 
 @keyframes loaderAnim {
-    from {transform: translateX(-50px);}
-    to {transform: translateX(50px);}
+    to {transform: rotate(360deg);}
 }
 
 .loader.hidden {
@@ -256,7 +294,7 @@ footer {
     }
 
     .app-header {
-        width: 60px;
+        width: 160px;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -266,19 +304,32 @@ footer {
         justify-content: space-between;
         align-items: center;
         padding: 20px;
+        background-color: #f1f2f6;
     }
 
     .about-page {
         position: fixed;
         top: 0;
         left: 0;
-        width: calc(100vw - 64px);
+        width: calc(100vw - 164px);
         height: 100vh;
         margin-top: 0;
-        margin-left: 64px;
+        margin-left: 164px;
         padding: 10% 4%;
         z-index: 3;
-        display: none;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 1000ms ease-out;
+    }
+    
+    .about-page.show-about {
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 1000ms ease-in;
     }
 
     .title {
@@ -296,22 +347,16 @@ footer {
         line-height: 1.4;
     }
     
-    .about-page.show-about {
-        display: flex;
-        flex-direction: column;
-    }
 
     .app-header__logo {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
+        font-weight: 200;
     }
 
     .app-header__about {
-        display: inline-block;
-        writing-mode: vertical-rl;
-        width: 18px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
         height: 22px;
-        transform: rotate(180deg);
         cursor: pointer;
     }
 
@@ -332,17 +377,38 @@ footer {
     }
 
     .app-header__social-container {
+        width: 100%;
+        height: 240px;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .app-header__social-container > a {
-        margin: 10px 0;
+        height: 60px;
+        width: 60px;
+        border-radius: 10px;
+        background: linear-gradient(145deg, #ffffff, #d9dadd);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app-header__social-container > a:active {
+        background: #f1f2f6;
+        box-shadow: inset 6px 6px 12px #cdced1, 
+            inset -6px -6px 12px #ffffff;
+    }
+
+    .social-icon {
+        width: 24px;
     }
 
     .card-wrapper {
-        margin-left: 60px;
+        margin-left: 160px;
         display: flex;
+        padding: 10px;
     }
 
     .col {
@@ -355,6 +421,7 @@ footer {
         width: 100%;
         height: auto;
         margin: 4px 0;
+        padding: 10px;
     }
 
     footer {

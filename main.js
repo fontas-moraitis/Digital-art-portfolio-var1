@@ -63,7 +63,6 @@ const UIcontrol = function(allImages) {
         aboutPage.classList.add('show-about');
         aboutBtn.innerText = 'close';
         document.body.classList.add('.stop-scrolling');
-        
         isAboutShown = true;
       } else {
         aboutPage.classList.remove('show-about');
@@ -79,7 +78,7 @@ const UIcontrol = function(allImages) {
     //loader
     setTimeout(() => {
       loader.classList.add('hidden')
-    }, 1000)
+    }, 1800)
 }
 
 // SPLIT DATA
