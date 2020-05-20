@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tasos siakotos arch. visualisation</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,500&display=swap" rel="stylesheet">   	
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
     <link rel='icon' href='./assets/logo-black.svg' type='image/x-icon'/ >
-</head>
-<body>
-    <div class="container">
-        <!-- about-me page -->
-        <div class="about-page hidden" id="aboutPage">
-            <div class="upperPart">
-                <div class="title" id="title">hi, i am tasos</div>
-                <div class="close-button" id="closeButton">X</div>
-            </div>
-            <div class="text" id="text">an architectural visualiser based in Birmingham. I have a
-                background in Architecture and a passion about photography. I have worked
-                in several architecture practises...
-            </div>
-        </div>
-        <!-- about-me page - end -->
-
-        <div class="wrapper">
-            <header>
-                <div class="owner"><a href="/">ts</a></div>
-                <div class="categories">
-                    <div class="category archviz">architecture</div>
-                    <div class="category mattepaint">matte-paintings</div>
-                    <div class="category photography">photography</div>
-                </div>
-            </header>
-            <main>
-                <div class="image-container">
-                    <img id="image" class="image-container__image" src="assets/test.jpg"></img>
-                </div>
-                <div class="control-container">
-                    <img class="button prev" src="assets/arrow-left.png"></img>
-                    <img class="button next" src="assets/arrow-right.png"></img>
-                </div>
-                <div class="info-container">
-                    <div class="about" id="aboutButton">about me</div>
-                    <div class="description-wrapper">
-                        <div class="description">
-                            <div class="index">01/05</div>
-                            <div class="img-title">title of the painting</div> 
-                        </div>
-                    </div> 
-                </div>
-            </main>
-            <footer>
-                <div class="social-container">
-                    <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img class="social linkedin" src="assets/linkedin.svg"></img></a>
-                    <a href="https://www.behance.net/tasossiakotos" target="blanc"><img class="social behance" src="assets/behance.svg"></img></a>
-                    <a href="https://www.instagram.com/siakan/" target="blanc"></a><img class="social instagram" src="assets/instagram.svg"></img>
-                </div>
-                <div class="copyright">copyright @2020 Tasos Siakotos - Created by <a href="http://www.fontas.me" target="blanc" >Fontas</a></div>  
-            </footer> 
-        </div>
+  </head>
+  <body>
+    <!-- app loader -->
+    <div class="loader">
+      <span></span>
+      <div class="loader-bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-</body>
+    <!-- mobile only, drop down menu -->
+    <div class="drop-down-menu">
+      <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc">linkedin</a>
+      <a href="https://www.behance.net/tasossiakotos" target="blanc">behance</a>
+      <a href="https://www.instagram.com/siakan/" target="blanc">instagram</a>
+    </div>
+    <!-- mobile only, drop down menu ends here-->
+    <section class="content">
+      <div class="app-header">
+        <div class="app-header__links">
+          <a href="/" class="app-header__logo"><img src="assets/logo-black.svg" alt="logo showing initials of tasos siakotos"></a>
+          <div class="app-header__about"><b>about me</b></div>
+        </div>
+        <div class="app-header__social-container">
+          <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img src="assets/linkedin.svg" alt="linkedin icon" class="social-icon" /></a>
+          <a href="https://www.behance.net/tasossiakotos" target="blanc"><img src="assets/behance.svg" alt="behance icon" class="social-icon" /></a>
+          <a href="https://www.instagram.com/siakan/" target="blanc"><img src="assets/instagram.svg" alt="instagram icon" class="social-icon" /></a>
+        </div>
+        <a href="http://www.fontas.me" target="blanc" class="header-copyright">by Fontas</a>
+        <div class="app-header__burger-wrapper">
+          <div class="app-header__burger"></div>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <!-- IMAGES AND DESCRIPTIONS ARE RENDERED HERE -->
+        <div class="col col-1"></div>
+        <div class="col col-2"></div>
+        <div class="col col-3"></div>
+      </div>
+    </section>
+    <!-- mobile only footer-->
+    <footer>
+      <div class="social-container">
+        <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img class="social linkedin" src="assets/linkedin.svg" /></a>
+        <a href="https://www.behance.net/tasossiakotos" target="blanc"><img class="social behance" src="assets/behance.svg" /></a>
+        <a href="https://www.instagram.com/siakan/" target="blanc"><img class="social instagram" src="assets/instagram.svg" /></a>
+      </div>
+      <div class="copyright">copyright @2020 Tasos Siakotos - Created by <a href="http://www.fontas.me" target="blanc" >Fontas</a></div>  
+    </footer> 
+    <div class="about-page">
+      <div id="title" class="title"></div>
+      <div id="text" class="text"></div>
+    </div>
+    <div class="popup-image">
+      <div class="popup-image-container"></div>
+    <div class="close-popup">
+      <span>close</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#f53b57" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </div>
+  </div>
 <script src="main.js"></script>
 </html>

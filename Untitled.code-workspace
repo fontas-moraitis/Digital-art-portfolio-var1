@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../stauros"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../Fontas"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "tasos"
+	}
+}

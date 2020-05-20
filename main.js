@@ -1,3 +1,138 @@
+// UI Controller
+const UIcontrol = function(allImages) {
+     //Query selectors
+     const menuBtn = document.querySelector('.app-header__burger-wrapper');
+     const dropDownMenu = document.querySelector('.drop-down-menu');
+     const firstCol = document.querySelector('.col-1');
+     const secondCol = document.querySelector('.col-2');
+     const thirdCol = document.querySelector('.col-3');
+     const loader = document.querySelector('.loader');
+     const aboutBtn = document.querySelector('.app-header__about');
+     const aboutPage = document.querySelector('.about-page');
+     const imagesContainer = document.querySelector('.card-wrapper')
+     const popupImg = document.querySelector('.popup-image');
+     const popupImgContainer = document.querySelector('.popup-image-container');
+     const closePopupBtn = document.querySelector('.close-popup');
+
+     //Open burger menu:
+     let menuOpen = false;
+     menuBtn.addEventListener('click', () => {
+         if(!menuOpen) {
+             menuBtn.classList.add('open');
+             dropDownMenu.classList.add('down');
+             menuOpen = true;
+         } else {
+             menuBtn.classList.remove('open');
+             dropDownMenu.classList.remove('down');
+             menuOpen = false;
+         }
+     });
+
+    // APPEND IMAGES
+    allImages.forEach((img, index) => {
+      const imgSubdiv = parseInt(allImages.length / 3);
+      if (index <= imgSubdiv) {
+        firstCol.innerHTML +=
+        `<div class="item-wrapper"><div class="image-container">
+              <img class="image-container__image" src="${img.url}"></img>
+            </div>
+            <div class="desc-wrapper">
+              <p class="img-title">${img.name}</p>
+          </div></div>`
+      }
+      else if (index > imgSubdiv && index <= (imgSubdiv * 2)) {
+        secondCol.innerHTML +=
+        `<div class="item-wrapper"><div class="image-container">
+              <img class="image-container__image" src="${img.url}"></img>
+            </div>
+            <div class="desc-wrapper">
+              <p class="img-title">${img.name}</p>
+          </div></div>`
+      }
+      else {
+        thirdCol.innerHTML +=
+        `<div class="item-wrapper"><div class="image-container">
+              <img class="image-container__image" src="${img.url}"></img>
+            </div>
+            <div class="desc-wrapper">
+              <p class="img-title">${img.name}</p>
+          </div></div>`
+      }
+    });
+
+    //About-me Page
+    let isAboutShown = false;
+    const openAboutPage = function() {
+      if (!isAboutShown) {
+        aboutPage.classList.add('show-about');
+        aboutBtn.innerText = 'back';
+        document.body.classList.add('.stop-scrolling');
+        isAboutShown = true;
+      } else {
+        aboutPage.classList.remove('show-about');
+        aboutBtn.innerText = 'about me';
+        document.body.classList.remove('.stop-scrolling');
+        isAboutShown = false;
+      }
+    }
+
+    aboutBtn.addEventListener('click', openAboutPage);
+
+
+    //loader
+    setTimeout(() => {
+      loader.classList.add('hidden')
+    }, 1800)
+
+    //Enlarge image on click
+    const enlargeImage = function() {
+      const imageToEnlarge = event.target.cloneNode(true);
+      popupImg.style.display = "flex";
+      popupImgContainer.appendChild(imageToEnlarge);
+    }
+    // image is clicked
+    imagesContainer.addEventListener('click', enlargeImage);
+    // close pop-up
+    const closePopup = function() {
+      popupImg.style.display = "none";
+      popupImgContainer.innerHTML = '';
+    }
+    // close image btn is clicked
+    closePopupBtn.addEventListener('click', closePopup);
+}
+
+// SPLIT DATA
+const splitContent = function(importedContent) {
+  const items = importedContent.items;
+  let galleries;
+  let generalInfo;
+
+  for (item of items) {
+      if ("gallery1" in item.fields) {
+          galleries = item.fields;       
+      } else {
+          generalInfo = item.fields
+      }
+  };
+
+  return {
+      galleries: galleries,
+      generalInfo: generalInfo
+  }
+};
+
+//about-me page:
+
+let aboutMeContent = function(input) {
+  //about-page query selectors
+const aboutTitle = document.querySelector('#title');
+const aboutText = document.querySelector('#text');
+
+//change content
+aboutTitle.innerText = input.cvtext1;
+aboutText.innerText = input.cvtext2;
+};
+
 // GET DATA FROM THE SERVER
 async function getData() 
 {
@@ -6,224 +141,42 @@ async function getData()
   return data;
 };
 
-
-
-// SPLIT DATA
-const splitContent = function(importedContent) {
-    const items = importedContent.items;
-    let galleries;
-    let generalInfo;
-
-    for (item of items) {
-        if ("gallery1" in item.fields) {
-            galleries = item.fields;               
-        } else {
-            generalInfo = item.fields
-        }
-    };
-
-    return {
-        galleries: galleries,
-        generalInfo: generalInfo
-    }
-};
-
-
-
-
 // GET ALL IMAGES URLs
 const imagesUrls = function(allData) {
-    let urlsArr = [];
-    
-    allData.Asset.forEach(el => urlsArr.push({
-        name: el.fields.title,
-        url: el.fields.file.url,
-        id: el.sys.id  
-    }));
+  let urlsArr = [];
+  
+  allData.Asset.forEach(el => urlsArr.push({
+      name: el.fields.title,
+      url: el.fields.file.url,
+      id: el.sys.id,
+      date: el.sys.updatedAt
+  }));
 
-    return urlsArr;
+  return urlsArr;
 };
-
-// SEPARATE GALLERIES
-const sepGalleries = function(someData, imageData) {
-    let gallery1 = [];
-    let gallery2 = [];
-    let gallery3 = [];
-    let gallery4 = [];
-
-    const allImages = imagesUrls(imageData);
-    
-    someData.galleries.gallery1.forEach(el => gallery1.push(el.sys.id));
-    someData.galleries.gallery2.forEach(el => gallery2.push(el.sys.id));
-    someData.galleries.gallery3.forEach(el => gallery3.push(el.sys.id));
-    someData.galleries.gallery4.forEach(el => gallery4.push(el.sys.id));
-
-    // Loop all images & filter galleries IDs:
-    let filteredGallery1 = [];
-    let filteredGallery2 = [];
-    let filteredGallery3 = [];
-    let filteredGallery4 = [];
-
-    // Filtering function:
-    const filter = function (gallery, filteredGallery) {
-        for(let el in allImages){
-            for(let elem in gallery){
-                if(allImages[el].id === gallery[elem]){
-                   filteredGallery.push(allImages[el]);
-                  }
-            }
-         }
-         return filteredGallery;
-    };
-
-    // Running all galleries through the filter:
-    filter(gallery1, filteredGallery1);
-    filter(gallery2, filteredGallery2);
-    filter(gallery3, filteredGallery3);
-    filter(gallery4, filteredGallery4);
-
-    return {
-            filteredGallery1,
-            filteredGallery2,
-            filteredGallery3,
-            filteredGallery4
-    }
-};
-
-
-// UI CONTROLLER 
-const UIcontroller = function(galleries) {
-    //Query Selectors:
-   const image = document.querySelector('#image');
-   const arch = document.querySelector('.archviz');
-   const mattePaint = document.querySelector('.mattepaint');
-   const photo = document.querySelector('.photography');
-   const imgTitle = document.querySelector('.img-title');
-   const index = document.querySelector('.index');
-
-   //about-me page:
-   const closeBtn = document.querySelector('#closeButton');
-   const aboutBtn = document.querySelector('#aboutButton');
-   const aboutPage = document.querySelector('#aboutPage');
-
-   const prevButton = document.querySelector('.prev');
-   const nextButton = document.querySelector('.next');
-
-   // Incoming Data:
-   let gallery1 = galleries.filteredGallery1;
-   let gallery2 = galleries.filteredGallery2;
-   let gallery3 = galleries.filteredGallery3;
-   let gallery4 = galleries.filteredGallery4;
-   let currentGallery = gallery1;
-
-    // Image Counter
-   let i = 0;
-
-   // intials values:
-   image.src = currentGallery[0].url;
-   imgTitle.textContent = currentGallery[0].name;
-   index.textContent = `${i + 1} / ${currentGallery.length}`;
-   arch.classList.add('active-category');
-
-   //Event  Listeners:
-   // 01. selecting galleries:
-    arch.addEventListener('click', () => {
-       currentGallery = gallery1;
-       image.src = currentGallery[0].url;
-       imgTitle.textContent = currentGallery[0].name;
-       index.textContent = `${0 + 1} / ${currentGallery.length}`;
-
-       arch.classList.add('active-category');
-       photo.classList.remove('active-category');
-       mattePaint.classList.remove('active-category');
-    });
-
-    mattePaint.addEventListener('click', () => {
-        currentGallery = gallery2;
-        image.src = currentGallery[0].url;
-        imgTitle.textContent = currentGallery[0].name;
-        index.textContent = `${0 + 1} / ${currentGallery.length}`;
-
-        arch.classList.remove('active-category');
-        photo.classList.remove('active-category');
-        mattePaint.classList.add('active-category');
-    });
-
-    photo.addEventListener('click', () => {
-        currentGallery = gallery4;
-        image.src = currentGallery[0].url;
-        imgTitle.textContent = currentGallery[0].name;
-        index.textContent = `${0 + 1} / ${currentGallery.length}`;
-
-        arch.classList.remove('active-category');
-        photo.classList.add('active-category');
-        mattePaint.classList.remove('active-category');
-    });
-
-   // 02. switching through images:
-   nextButton.addEventListener('click', () => { 
-        if (i < (currentGallery.length - 1)) {
-            i++
-        } else if (i = (currentGallery.length - 1)) {
-            i = 0
-        }
-
-        image.src = currentGallery[i].url;
-        imgTitle.textContent = currentGallery[i].name;
-        index.textContent = `${i + 1} / ${currentGallery.length}`;
-   });
-
-   prevButton.addEventListener('click', () => {
-        if (i <= (currentGallery.length - 1) && i !== 0) {
-            i--
-        } else if(i === 0) {
-            i = currentGallery.length - 1;
-        }
-        image.src = currentGallery[i].url;
-        imgTitle.textContent = currentGallery[i].name;
-        index.textContent = `${i + 1} / ${currentGallery.length}`;
-    });
-
-    // open close about-me page
-    aboutBtn.addEventListener('click', () => {
-        aboutPage.classList.remove("hidden")
-    });
-    closeBtn.addEventListener('click', () => {
-        aboutPage.classList.add("hidden")
-    });
-};
-
-//about-me page:
-
-let aboutMeContent = function(input) {
-        //about-page query selectors
-   const aboutTitle = document.querySelector('#title');
-   const aboutText = document.querySelector('#text');
-
-   //change content
-   aboutTitle.innerText = input.cvtext1;
-   aboutText.innerText = input.cvtext2;
-};
-
-
 
 // INITIALIZATION
 (async () => {
-    try {
-        let responseData = await getData();
-        let data = splitContent(responseData);
-        
-        //Handle Galleries:
-        let galleries = sepGalleries(data, responseData.includes);
-        let generalInfo = data.generalInfo;
+  try {
+      let responseData = await getData();
+      const imgData = responseData.includes;
+      const allImages = imagesUrls(imgData);
+      const sortedImages = allImages.sort((a, b) => {
+        if(a.date < b.date) return 1;
+        if(a.date > b.date) return -1;
+        return 0;
+      });
 
-        //Navigate through filtered galleries:
-        UIcontroller(galleries);
+      let data = splitContent(responseData);
+      let generalInfo = data.generalInfo
 
-        //about-me-page
-        aboutMeContent(generalInfo);
+      //Navigate through filtered galleries:
+      UIcontrol(sortedImages);
 
-    } catch (error) {
-        console.log(error);
-    }
+      //about-me-page
+      aboutMeContent(generalInfo);
+
+  } catch (error) {
+      console.log(error);
+  }
 })();
