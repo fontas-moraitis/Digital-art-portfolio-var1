@@ -30,6 +30,7 @@ a {
 
 :root {
     --main-color: #f1f2f6;
+    --highlight-color: #00cec9;
   }
 
 .content {
@@ -141,7 +142,7 @@ a {
 .drop-down-menu {
     width: 100vw;
     height: 300px;
-    background-color: gold;
+    background-color: var(--highlight-color);
     margin-top: -300px;
     transition: all 500ms ease-in-out;
     display: flex;
@@ -327,7 +328,7 @@ footer {
         flex-direction: column;
         opacity: 0;
         transform: translateX(100%);
-        transition: all 1000ms ease-out;
+        transition: all 800ms ease-in;
     }
     
     .about-page.show-about {
@@ -335,7 +336,7 @@ footer {
         flex-direction: column;
         opacity: 1;
         transform: translateX(0);
-        transition: all 1000ms ease-in;
+        transition: all 800ms ease-out;
     }
 
     .title {
@@ -375,7 +376,7 @@ footer {
     }
 
     .header-copyright:hover, .app-header__about:hover {
-        color: #f53b57;
+        color: var(--highlight-color);
     }
     
 
@@ -445,7 +446,7 @@ footer {
     .popup-image {
         width: 100vw;
         height: 100vh;
-        background-color: #f1f2f6;
+        background-color: #000000;
         position: fixed;
         top: 0;
         left: 0;
@@ -473,7 +474,7 @@ footer {
     }
 
     .close-popup > span {
-        color: #f53b57;
+        color: var(--highlight-color);
         font-weight: 200;
         margin-right: 10px;
     }
