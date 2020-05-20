@@ -9,6 +9,10 @@ const UIcontrol = function(allImages) {
      const loader = document.querySelector('.loader');
      const aboutBtn = document.querySelector('.app-header__about');
      const aboutPage = document.querySelector('.about-page');
+     const imagesContainer = document.querySelector('.card-wrapper')
+     const popupImg = document.querySelector('.popup-image');
+     const popupImgContainer = document.querySelector('.popup-image-container');
+     const closePopupBtn = document.querySelector('.close-popup');
 
      //burger-menu-animation
      let menuOpen = false;
@@ -79,6 +83,22 @@ const UIcontrol = function(allImages) {
     setTimeout(() => {
       loader.classList.add('hidden')
     }, 1800)
+
+    //Enlarge image on click
+    const enlargeImage = function() {
+      const largeImage = event.target;
+      popupImg.style.display = "flex";
+      popupImgContainer.appendChild(largeImage);
+    }
+    // image is clicked
+    imagesContainer.addEventListener('click', enlargeImage);
+    // close pop-up
+    const closePopup = function() {
+      popupImg.style.display = "none";
+      popupImgContainer.innerHTML = '';
+    }
+    // close image btn is clicked
+    closePopupBtn.addEventListener('click', closePopup);
 }
 
 // SPLIT DATA
