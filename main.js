@@ -1,6 +1,6 @@
 // UI Controller
 const UIcontrol = function(allImages) {
-     //Open gallery page
+     //Query selectors
      const menuBtn = document.querySelector('.app-header__burger-wrapper');
      const dropDownMenu = document.querySelector('.drop-down-menu');
      const firstCol = document.querySelector('.col-1');
@@ -14,7 +14,7 @@ const UIcontrol = function(allImages) {
      const popupImgContainer = document.querySelector('.popup-image-container');
      const closePopupBtn = document.querySelector('.close-popup');
 
-     //burger-menu-animation
+     //Open burger menu:
      let menuOpen = false;
      menuBtn.addEventListener('click', () => {
          if(!menuOpen) {
@@ -65,12 +65,12 @@ const UIcontrol = function(allImages) {
     const openAboutPage = function() {
       if (!isAboutShown) {
         aboutPage.classList.add('show-about');
-        aboutBtn.innerText = 'close';
+        aboutBtn.innerText = 'back';
         document.body.classList.add('.stop-scrolling');
         isAboutShown = true;
       } else {
         aboutPage.classList.remove('show-about');
-        aboutBtn.innerText = 'about';
+        aboutBtn.innerText = 'about me';
         document.body.classList.remove('.stop-scrolling');
         isAboutShown = false;
       }
@@ -86,9 +86,9 @@ const UIcontrol = function(allImages) {
 
     //Enlarge image on click
     const enlargeImage = function() {
-      const largeImage = event.target;
+      const imageToEnlarge = event.target.cloneNode(true);
       popupImg.style.display = "flex";
-      popupImgContainer.appendChild(largeImage);
+      popupImgContainer.appendChild(imageToEnlarge);
     }
     // image is clicked
     imagesContainer.addEventListener('click', enlargeImage);
@@ -109,7 +109,7 @@ const splitContent = function(importedContent) {
 
   for (item of items) {
       if ("gallery1" in item.fields) {
-          galleries = item.fields;               
+          galleries = item.fields;       
       } else {
           generalInfo = item.fields
       }
@@ -148,7 +148,8 @@ const imagesUrls = function(allData) {
   allData.Asset.forEach(el => urlsArr.push({
       name: el.fields.title,
       url: el.fields.file.url,
-      id: el.sys.id  
+      id: el.sys.id,
+      date: el.sys.updatedAt
   }));
 
   return urlsArr;
@@ -160,12 +161,17 @@ const imagesUrls = function(allData) {
       let responseData = await getData();
       const imgData = responseData.includes;
       const allImages = imagesUrls(imgData);
+      const sortedImages = allImages.sort((a, b) => {
+        if(a.date < b.date) return 1;
+        if(a.date > b.date) return -1;
+        return 0;
+      });
 
       let data = splitContent(responseData);
       let generalInfo = data.generalInfo
 
       //Navigate through filtered galleries:
-      UIcontrol(allImages);
+      UIcontrol(sortedImages);
 
       //about-me-page
       aboutMeContent(generalInfo);

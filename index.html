@@ -7,6 +7,7 @@
     <title>tasos siakotos arch. visualisation</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
     <link rel='icon' href='./assets/logo-black.svg' type='image/x-icon'/ >
   </head>
   <body>
@@ -28,14 +29,16 @@
     <!-- mobile only, drop down menu ends here-->
     <section class="content">
       <div class="app-header">
-        <a href="/" class="app-header__logo"><b>tasos siakotos</b></a>
-        <div class="app-header__about"><b>about</b></div>
-        <a href="http://www.fontas.me" target="blanc" class="header-copyright" >copyright © 2020 Tasos Siakotos v3.0 - Created by Fontas</a>
+        <div class="app-header__links">
+          <a href="/" class="app-header__logo"><img src="assets/logo-black.svg" alt="logo showing initials of tasos siakotos"></a>
+          <div class="app-header__about"><b>about me</b></div>
+        </div>
         <div class="app-header__social-container">
           <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img src="assets/linkedin.svg" alt="linkedin icon" class="social-icon" /></a>
           <a href="https://www.behance.net/tasossiakotos" target="blanc"><img src="assets/behance.svg" alt="behance icon" class="social-icon" /></a>
           <a href="https://www.instagram.com/siakan/" target="blanc"><img src="assets/instagram.svg" alt="instagram icon" class="social-icon" /></a>
         </div>
+        <a href="http://www.fontas.me" target="blanc" class="header-copyright">by Fontas</a>
         <div class="app-header__burger-wrapper">
           <div class="app-header__burger"></div>
         </div>
@@ -60,6 +63,16 @@
       <div id="title" class="title"></div>
       <div id="text" class="text"></div>
     </div>
-    <div class="popup-image"><div class="popup-image-container"></div><div class="close-popup">X</div></div>
+    <div class="popup-image">
+      <div class="popup-image-container"></div>
+    <div class="close-popup">
+      <span>close</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#f53b57" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </div>
+  </div>
 <script src="main.js"></script>
 </html>
