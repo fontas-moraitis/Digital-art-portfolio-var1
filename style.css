@@ -181,10 +181,10 @@ a {
 }
 
 .img-title {
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: lowercase;
-    color: #353535;
+    font-weight: 400;
+    font-size: .7rem;
+    letter-spacing: 1px;
+    color: #2f3542;
 }
 
 .loader {
@@ -260,11 +260,12 @@ a {
 
 footer {
     width: 100%;
-    height: 10vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     align-items: center;
+
 }
 
 .social {
@@ -273,6 +274,17 @@ footer {
 }
 
 .social-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.social-container > a {
+    height: 32px;
+    width: 32px;
+    border-radius: 8px;
+    border: 1px solid #2f3542;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -284,8 +296,12 @@ footer {
 }
 
 .copyright {
-    font-size: .8rem;
+    font-size: .6rem;
     margin: 10px 0;
+}
+
+.popup-image {
+    display: none;
 }
 
 /************** DESKTOP VERSION ***********************/
@@ -434,13 +450,6 @@ footer {
 
     .desc-wrapper {
         padding: 0 10px;
-    }
-
-    .img-title {
-        font-weight: 400;
-        font-size: .7rem;
-        letter-spacing: 1px;
-        color: #2f3542;
     }
 
     .popup-image {

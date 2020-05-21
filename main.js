@@ -84,11 +84,13 @@ const UIcontrol = function(allImages) {
       loader.classList.add('hidden')
     }, 1800)
 
-    //Enlarge image on click
+    //Enlarge image on click if not on mobile
     const enlargeImage = function() {
-      const imageToEnlarge = event.target.cloneNode(true);
-      popupImg.style.display = "flex";
-      popupImgContainer.appendChild(imageToEnlarge);
+      if (window.innerWidth > 768) {
+        const imageToEnlarge = event.target.cloneNode(true);
+        popupImg.style.display = "flex";
+        popupImgContainer.appendChild(imageToEnlarge);
+      }
     }
     // image is clicked
     imagesContainer.addEventListener('click', enlargeImage);
