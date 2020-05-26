@@ -8,23 +8,30 @@ const UIcontrol = function(allImages) {
      const thirdCol = document.querySelector('.col-3');
      const loader = document.querySelector('.loader');
      const aboutBtn = document.querySelector('.app-header__about');
+     const aboutBtnMobile = document.querySelector('.drop-down-menu__about');
      const aboutPage = document.querySelector('.about-page');
      const imagesContainer = document.querySelector('.card-wrapper')
      const popupImg = document.querySelector('.popup-image');
      const popupImgContainer = document.querySelector('.popup-image-container');
      const closePopupBtn = document.querySelector('.close-popup');
 
-     //Open burger menu:
+     //UI state control
      let menuOpen = false;
+     let isAboutShown = false;
+
+     //Open burger menu:
      menuBtn.addEventListener('click', () => {
          if(!menuOpen) {
              menuBtn.classList.add('open');
              dropDownMenu.classList.add('down');
              menuOpen = true;
-         } else {
-             menuBtn.classList.remove('open');
-             dropDownMenu.classList.remove('down');
-             menuOpen = false;
+            } else {
+              menuBtn.classList.remove('open');
+              dropDownMenu.classList.remove('down');
+              menuOpen = false;
+              if (isAboutShown) {
+                toggleAboutPage()
+              }
          }
      });
 
@@ -33,36 +40,41 @@ const UIcontrol = function(allImages) {
       const imgSubdiv = parseInt(allImages.length / 3);
       if (index <= imgSubdiv) {
         firstCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
+        `<div class="item-wrapper">
+            <div class="image-container">
               <img class="image-container__image" src="${img.url}"></img>
             </div>
             <div class="desc-wrapper">
               <p class="img-title">${img.name}</p>
-          </div></div>`
+            </div>
+        </div>`
       }
       else if (index > imgSubdiv && index <= (imgSubdiv * 2)) {
         secondCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
+        `<div class="item-wrapper">
+          <div class="image-container">
               <img class="image-container__image" src="${img.url}"></img>
-            </div>
-            <div class="desc-wrapper">
+          </div>
+          <div class="desc-wrapper">
               <p class="img-title">${img.name}</p>
-          </div></div>`
+          </div>
+        </div>`
       }
       else {
         thirdCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
+        `<div class="item-wrapper">
+          <div class="image-container">
               <img class="image-container__image" src="${img.url}"></img>
-            </div>
-            <div class="desc-wrapper">
+          </div>
+          <div class="desc-wrapper">
               <p class="img-title">${img.name}</p>
-          </div></div>`
+          </div>
+        </div>`
       }
     });
 
     //About-me Page
-    let isAboutShown = false;
-    const openAboutPage = function() {
+    const toggleAboutPage = function() {
       if (!isAboutShown) {
         aboutPage.classList.add('show-about');
         aboutBtn.innerText = 'back';
@@ -76,7 +88,8 @@ const UIcontrol = function(allImages) {
       }
     }
 
-    aboutBtn.addEventListener('click', openAboutPage);
+    aboutBtn.addEventListener('click', toggleAboutPage);
+    aboutBtnMobile.addEventListener('click', toggleAboutPage);
 
 
     //loader
@@ -86,7 +99,7 @@ const UIcontrol = function(allImages) {
 
     //Enlarge image on click if not on mobile
     const enlargeImage = function() {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth > 768 && !event.target.classList.contains('img-title')) {
         const imageToEnlarge = event.target.cloneNode(true);
         popupImg.style.display = "flex";
         popupImgContainer.appendChild(imageToEnlarge);
@@ -123,7 +136,7 @@ const splitContent = function(importedContent) {
   }
 };
 
-//about-me page:
+/***** about-me page: *****/
 
 let aboutMeContent = function(input) {
   //about-page query selectors

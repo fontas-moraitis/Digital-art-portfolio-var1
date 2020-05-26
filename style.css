@@ -155,9 +155,17 @@ a {
     padding: 10%;
 }
 
+.drop-down-menu > img {
+    width: 68px;
+}
+
 .drop-down-menu.down {
     margin-top: 0;
     transition: all 500ms ease-in-out;
+}
+
+.drop-down-menu__about {
+    font-weight: 200;
 }
 
 .image-container__image {
@@ -304,6 +312,44 @@ footer {
     display: none;
 }
 
+.about-page {
+    position: fixed;
+    top: 400px;;
+    left: 0;
+    width: 100vw;
+    height: (100vh - 200px);
+    margin-top: 0;
+    margin-left: 0;
+    padding: 3% 5%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-200%);
+    transition: all 800ms ease-in;
+}
+
+.about-page.show-about {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 800ms ease-out;
+}
+
+/* title and text for the about me page */
+.title {
+    font-size: 2rem;
+    font-weight: 100;
+    margin-bottom: 4px;
+}
+
+.text {
+    font-size: .8rem;
+    letter-spacing: .1rem;
+    line-height: 1.7;
+}
+
 /************** DESKTOP VERSION ***********************/
 
 @media screen and (min-width: 768px) {
@@ -355,6 +401,7 @@ footer {
         transition: all 800ms ease-out;
     }
 
+    /* title and text for the about me page */
     .title {
         max-width: 50vw;
         font-size: 3rem;
@@ -368,7 +415,6 @@ footer {
         letter-spacing: .1rem;
         line-height: 1.8;
     }
-    
 
     .app-header__logo > img {
         width: 70px;
