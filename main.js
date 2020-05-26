@@ -73,17 +73,24 @@ const UIcontrol = function(allImages) {
       }
     });
 
+    // Disable scrolling when the about-me page is open
+    function noScroll() {
+      window.scrollTo(0, 0);
+    }
+
     //About-me Page
     const toggleAboutPage = function() {
       if (!isAboutShown) {
         aboutPage.classList.add('show-about');
         aboutBtn.innerText = 'back';
         document.body.classList.add('.stop-scrolling');
+        window.addEventListener('scroll', noScroll);
         isAboutShown = true;
       } else {
         aboutPage.classList.remove('show-about');
         aboutBtn.innerText = 'about me';
         document.body.classList.remove('.stop-scrolling');
+        window.removeEventListener('scroll', noScroll);
         isAboutShown = false;
       }
     }
