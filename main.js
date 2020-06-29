@@ -14,6 +14,11 @@ const UIcontrol = function(allImages) {
      const popupImgContainer = document.querySelector('.popup-image-container');
      const closePopupBtn = document.querySelector('.close-popup');
 
+     // Hide loader after 1.8sec:
+    setTimeout(() => {
+      loader.classList.add('hidden')
+    }, 1800);
+
      //Open burger menu:
      let menuOpen = false;
      menuBtn.addEventListener('click', () => {
@@ -27,77 +32,78 @@ const UIcontrol = function(allImages) {
              menuOpen = false;
          }
      });
+  
+    let total = allImages.length;
+    const columnA = getColumnNumbers(0, total);
+    const columnB = getColumnNumbers(1, total);
+    const columnC = getColumnNumbers(2, total);
 
-    // APPEND IMAGES
+    // Function to append images to the DOM:
+    const assignImage = function(column, img) {
+      column.innerHTML +=
+      `<div class="item-wrapper">
+          <div class="image-container">
+            <img class="image-container__image" src="${img.url}"></img>
+          </div>
+          <div class="desc-wrapper">
+            <p class="img-title">${img.name}</p>
+        </div>
+      </div>`
+    };
+
+    // Loop throught the images and assign them to appropriate column:
     allImages.forEach((img, index) => {
-      const imgSubdiv = parseInt(allImages.length / 3);
-      if (index <= imgSubdiv) {
-        firstCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
-              <img class="image-container__image" src="${img.url}"></img>
-            </div>
-            <div class="desc-wrapper">
-              <p class="img-title">${img.name}</p>
-          </div></div>`
+      if (columnA.includes(index)) {
+        assignImage(firstCol, img);
       }
-      else if (index > imgSubdiv && index <= (imgSubdiv * 2)) {
-        secondCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
-              <img class="image-container__image" src="${img.url}"></img>
-            </div>
-            <div class="desc-wrapper">
-              <p class="img-title">${img.name}</p>
-          </div></div>`
+      else if (columnB.includes(index)) {
+        assignImage(secondCol, img);
       }
-      else {
-        thirdCol.innerHTML +=
-        `<div class="item-wrapper"><div class="image-container">
-              <img class="image-container__image" src="${img.url}"></img>
-            </div>
-            <div class="desc-wrapper">
-              <p class="img-title">${img.name}</p>
-          </div></div>`
+      else if (columnC.includes(index)) {
+        assignImage(thirdCol, img);
       }
     });
 
     //About-me Page
-    let isAboutShown = false;
-    const openAboutPage = function() {
-      if (!isAboutShown) {
-        aboutPage.classList.add('show-about');
-        aboutBtn.innerText = 'back';
-        document.body.classList.add('.stop-scrolling');
-        isAboutShown = true;
-      } else {
-        aboutPage.classList.remove('show-about');
-        aboutBtn.innerText = 'about me';
-        document.body.classList.remove('.stop-scrolling');
-        isAboutShown = false;
-      }
-    }
+    // let isAboutShown = false;
+    // const openAboutPage = function() {
+    //   if (!isAboutShown) {
+    //     aboutPage.classList.add('show-about');
+    //     aboutBtn.innerText = 'back';
+    //     document.body.classList.add('.stop-scrolling');
+    //     isAboutShown = true;
+    //   } else {
+    //     aboutPage.classList.remove('show-about');
+    //     aboutBtn.innerText = 'about me';
+    //     document.body.classList.remove('.stop-scrolling');
+    //     isAboutShown = false;
+    //   }
+    // }
 
-    aboutBtn.addEventListener('click', openAboutPage);
+    // aboutBtn.addEventListener('click', openAboutPage);
 
 
-    //loader
-    setTimeout(() => {
-      loader.classList.add('hidden')
-    }, 1800)
-
-    //Enlarge image on click
+    // Function to enlarge image on click:
     const enlargeImage = function() {
-      const imageToEnlarge = event.target.cloneNode(true);
-      popupImg.style.display = "flex";
-      popupImgContainer.appendChild(imageToEnlarge);
+        const imageToEnlarge = event.target.cloneNode(true);
+        popupImg.style.display = "flex";
+        popupImgContainer.appendChild(imageToEnlarge);
+        disableScroll();
     }
-    // image is clicked
-    imagesContainer.addEventListener('click', enlargeImage);
-    // close pop-up
+    // Function to close image on click:
     const closePopup = function() {
       popupImg.style.display = "none";
       popupImgContainer.innerHTML = '';
+      enableScroll();
     }
-    // close image btn is clicked
+
+
+    // Event listener to enlarge image:
+    imagesContainer.addEventListener('click', enlargeImage);
+    // Remove event listener on mobile devices:
+    if (innerWidth < 768) imagesContainer.removeEventListener('click', enlargeImage);
+
+    // Event listener to close enlarged image:
     closePopupBtn.addEventListener('click', closePopup);
 }
 

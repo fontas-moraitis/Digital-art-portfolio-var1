@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tasos siakotos arch. visualisation</title>
+    <meta name="description" content="exhibiting architectural computer generating visualisations, with a strong focus to composition.">
+    <meta name="robots" content="index, nofollow" />
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
@@ -20,29 +22,24 @@
         <span></span>
       </div>
     </div>
-    <!-- mobile only, drop down menu -->
-    <div class="drop-down-menu">
-      <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc">linkedin</a>
-      <a href="https://www.behance.net/tasossiakotos" target="blanc">behance</a>
-      <a href="https://www.instagram.com/siakan/" target="blanc">instagram</a>
-    </div>
-    <!-- mobile only, drop down menu ends here-->
     <section class="content">
-      <div class="app-header">
-        <div class="app-header__links">
-          <a href="/" class="app-header__logo"><img src="assets/logo-black.svg" alt="logo showing initials of tasos siakotos"></a>
-          <div class="app-header__about"><b>about me</b></div>
-        </div>
-        <div class="app-header__social-container">
-          <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img src="assets/linkedin.svg" alt="linkedin icon" class="social-icon" /></a>
-          <a href="https://www.behance.net/tasossiakotos" target="blanc"><img src="assets/behance.svg" alt="behance icon" class="social-icon" /></a>
-          <a href="https://www.instagram.com/siakan/" target="blanc"><img src="assets/instagram.svg" alt="instagram icon" class="social-icon" /></a>
-        </div>
-        <a href="http://www.fontas.me" target="blanc" class="header-copyright">by Fontas</a>
-        <div class="app-header__burger-wrapper">
-          <div class="app-header__burger"></div>
-        </div>
-      </div>
+      <section class="main-screen">
+        <header class="app-header">
+          <a href="/" class="app-header__logo">TASOSSIAKOTOS</a>
+          <div class="app-header__social-container">
+            <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img src="assets/linkedin.svg" alt="linkedin icon" class="social-icon" /></a>
+            <a href="https://www.behance.net/tasossiakotos" target="blanc"><img src="assets/behance.svg" alt="behance icon" class="social-icon" /></a>
+            <a href="https://www.instagram.com/siakan/" target="blanc"><img src="assets/instagram.svg" alt="instagram icon" class="social-icon" /></a>
+          </div>
+          <!-- removing made by from the header -->
+          <!-- <a href="http://www.fontas.me" target="blanc" class="header-copyright">by Fontas</a> -->
+          <div class="app-header__burger-wrapper">
+            <div class="app-header__burger"></div>
+          </div>
+        </header>
+        <div class="hero-image-container"></div>
+        <div class="hero-image-title">london developement by BM3</div>
+      </section>
       <div class="card-wrapper">
         <!-- IMAGES AND DESCRIPTIONS ARE RENDERED HERE -->
         <div class="col col-1"></div>
@@ -50,7 +47,6 @@
         <div class="col col-3"></div>
       </div>
     </section>
-    <!-- mobile only footer-->
     <footer>
       <div class="social-container">
         <a href="https://www.linkedin.com/in/anastasiossiakotos/" target="blanc"><img class="social linkedin" src="assets/linkedin.svg" /></a>
@@ -65,14 +61,15 @@
     </div>
     <div class="popup-image">
       <div class="popup-image-container"></div>
-    <div class="close-popup">
-      <span>close</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#f53b57" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </div>
+      <div class="close-popup">
+        <span>close</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </div>
   </div>
-<script src="main.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
 </html>
