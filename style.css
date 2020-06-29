@@ -63,7 +63,7 @@ a {
 .app-header__social-container {
     position: absolute;
     left: 18px;
-    top: 92vh;
+    top: 85vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -315,7 +315,7 @@ footer {
 
 .hero-image-container {
     height: 100vh;
-    background: url(./assets/heroImage.jpg) no-repeat center center fixed;
+    background: url(./assets/heroImage.jpg) no-repeat center center;
     background-size: cover;
     margin-bottom: 15px;
 }
